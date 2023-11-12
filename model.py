@@ -29,20 +29,16 @@ class NoteBook:
                     'text': note.get_text(),
                     'date': str(note.get_date())}
             json.dump(data, write_file)
-    # json.dums(note.get_title(), write_file)
-    # json.dump(note.get_text(), write_file)
-    # json.dump(str(note.get_date()), write_file)
 
     def read_note(self, id):
         with open(f"JSON/note_{id}.json", "r") as read_file:
             data = json.load(read_file)
-            for k in data:
-                print(f"{k}: {data[k]}")
+            for k,v in data.items():
+                print(f"{k}: {v}")
 
     def update_note(self, id, title, text):
         try:
             os.remove(f"JSON/note_{id}.json")
-            self.note_id_list.pop(id)
             note = Note(id, title, text)  # создадим заметку
             # создаем json файл
             self.__save_note(note)
@@ -53,7 +49,6 @@ class NoteBook:
     def delete_note(self, id):
         try:
             os.remove(f"JSON/note_{id}.json")
-            self.note_id_list.pop(id)
             print("Заметка удалена")
         except:
             print("Нет такой заметки")

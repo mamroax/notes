@@ -11,6 +11,6 @@ from controller import Controller
 последующим вводом данных, как-то ещё, на усмотрение студента."""
 
 
-controller = Controller()  # создали контроллер
-
-controller.run()  # запустили программу
+if __name__ == '__main__':
+    controller = Controller()  # создали контроллер
+    controller.run()  # запустили программу
